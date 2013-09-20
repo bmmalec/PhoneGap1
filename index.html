@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>PhoneGap1</title>
+</head>
+<body>
+    <button id="Button1">Run It</button>
+    <button id="Clear">Clear</button>
+    <div id="Results"></div>
+
+<script src="scripts/jquery-2.0.3.js"></script>
+<script src="scripts/GapJS.js"></script>
+<script>
+    $('#Button1').click(function () {
+        GapJS.Event1($('#Results'));
+    });
+    $('#Clear').click(function () {
+        $('#Results').html('');
+    });
+
+</script>
+</body>
+</html>
