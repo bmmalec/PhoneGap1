@@ -13,8 +13,12 @@
     <div data-role="page">
         <div data-role="header" class="ui-btn-icon-right ui-icon-home" onclick="window.location='Index.html'"><h1>eGate Solutions TS4</h1></div>
         <nav data-role="content">
+            JQuery Status <div id="status"></div>
+            <div id="imgsrc"></div>
+            <div id="urlpath"></div>
+            <div id="checkimage">Checking</div>
             <ul>
-                <li><a href="Barset/Login.html"><img src="./images/48x48/Tasks.png" alt="" width="48" height="48" />Barset</a></li>
+                <li><a href="./Barset/Login.html"><img src="./images/48x48/Tasks.png" id="Menu1" alt="" width="48" height="48" />Barset</a></li>
                 <li><img src="./images/48x48/Plane.png" alt="" width="48" height="48" />Flight</li>
                 <li><a href="#popupLogin" data-rel="popup" data-transition="pop"><img src="./images/48x48/Keys.png" alt="" width="48" height="48" />Login</a></li>
                 <li><img src="./images/48x48/Dollar.gif" alt="" width="48" height="48" />Sales</li>
@@ -77,5 +81,23 @@
             </form>
         </div>
     </div>
+<script>
+
+    function UrlExists(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status != 404;
+    }
+
+    if ($.mobile) {
+        $("#status").html("Loaded");
+        $("#imgsrc").html($("#Menu1").attr("src"));
+        $("#urlpath").html(window.location.pathname);
+        $("#checkimage").html(UrlExists($("#Menu1").attr("src")));
+    } else {
+        $("#status").html("Not Loaded");
+    }
+</script>
 </body>
 </html>
