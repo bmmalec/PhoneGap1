@@ -1,0 +1,4 @@
+﻿div.ui-bar { text-align: left; }
+div.ui-content img { vertical-align: middle; }
+div.ui-content[role="main"] { text-align: center; }
+div.ui-content[role="main"] a { min-width: 75px; }
