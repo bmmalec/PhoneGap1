@@ -101,14 +101,12 @@
             var html = "<h3>Menu</h3><ul>";
             if (result.rows.length) {
                 for (var i = 0; i < result.rows.length; i++) {
-                    for (var j = 0; j < 10; j++) {
                         var row = result.rows.item(i);
                         var itemid = row.itemid;
                         var itemname = row.itemname;
                         var price = row.usdprice;
                         html += "<li onclick='SelectItem(" + itemid + ")'>" + itemname + "&nbsp;" + price + "</li>";
                     }
-                }
             }
             else {
                 html += "<li> No customer </li>";
