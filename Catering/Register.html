@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>eGate Solutions - TS4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Content/jquery.mobile-1.4.0.min.css">
+    <link rel="stylesheet" href="/Content/Views/Default.min.css">
+    <script src="/scripts/jquery-2.1.0.min.js"></script>
+    <script src="/scripts/jquery.mobile-1.4.0.min.js"></script>
+    <script src="/scripts/Views/Default.min.js"></script>
+    <script type="text/javascript" src="/scripts/localstoragedb.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header"><h1>eGate Solutions TS4</h1></div>
+        <nav data-role="content">
+            <div id="menuret" onclick="phoneReady()">Menu</div>
+            <br />
+            <h3>Receipt</h3>
+            <div id="receipt"></div>
+        </nav>
+        <div id="pnlUtils" data-role="panel" data-display="overlay">
+            <div class="ui-bar">
+                <h3><img src="/Images/32x32/Settings.png" alt="" width="32" height="32" /> Utilities</h3>
+            </div>
+            <hr />
+            <table style="width:100%">
+                <tr>
+                    <td><label for="AirportMode">Airplane Mode:</label></td>
+                    <td>
+                        <select name="flip-1" id="AirportMode" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Wifi">Wi-Fi:</label></td>
+                    <td>
+                        <select name="flip-1" id="Wifi" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Bluetooth:</label></td>
+                    <td>
+                        <select name="flip-1" id="Bluetooth" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Screen Rotation:</label></td>
+                    <td>
+                        <select name="ScreenRotation" id="ScreenRotation" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="pnlReports" data-role="panel" data-display="overlay">
+            <h2 data-rel="close"><img src="/Images/48x48/Chart.gif" alt="" width="32" height="32" /> Reports</h2>
+            <ul data-role="listview">
+                <li><a href="/Reports/OutofStockSummary.html" data-rel="external">Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="/Reports/SalesSummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="/Reports/StockSummary.html" data-rel="external">Stock Summary</a></li>
+                <li><a href="/Reports/Payment.html" data-rel="external">Payment</a></li>
+                <li><a href="/Reports/CategorySalesSummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="/Reports/ItemsSold-Pax.html" data-rel="external">Items Sold / Pax</a></li>
+            </ul>
+        </div>
+
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="/Images/32x32/Info.png" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        </div>
+
+    </div>
+<script>
+
+    phoneReady();
+
+    function phoneReady() {
+        //First, open our db    
+        dbShell = window.openDatabase("InflightDB", 1, "InflightDB", 1000000);
+
+        //run transaction to create initial tables
+        dbShell.transaction(setupMenu, dbErrorHandler, function (err) { });
+    }
+
+    function setupMenu(tx) {
+        var menuhtml = "<h3>Menu</h3><ul>";
+
+        tx.executeSql("Select * FROM menuitems ;", undefined, function (db, result) {
+            var html = "<h3>Menu</h3><ul>";
+            if (result.rows.length) {
+                for (var i = 0; i < result.rows.length; i++) {
+                    for (var j = 0; j < 10; j++) {
+                        var row = result.rows.item(i);
+                        var itemid = row.itemid;
+                        var itemname = row.itemname;
+                        var price = row.usdprice;
+                        html += "<li onclick='SelectItem(" + itemid + ")'>" + itemname + "&nbsp;" + price + "</li>";
+                    }
+                }
+            }
+            else {
+                html += "<li> No customer </li>";
+            }
+
+            html += "</ul>";
+
+            /*
+                            //var nData = $.parseJSON(result.d);
+                            $.each(result.rows, function (i, item) {
+                                alert(item.ItemName);
+                                menuhtml = menuhtml + "<li>" + item.ItemName + ' - ' + item.USDPrice + "</li>";
+                            });
+                        });
+                    menuhtml = menuhtml + "</ul>";
+                    $("#menuret").html(menuhtml);
+                    */
+            $("#menuret").html(html);
+        });
+    }
+
+    function dbErrorHandler(err) {
+        alert("DB Error: " + err.message + "\nCode=" + err.code);
+    }
+
+    function SelectItem(idx) {
+        $("#receipt").append("Menu Item " + idx);
+    }
+</script>
+</body>
+</html>
