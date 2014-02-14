@@ -3,101 +3,92 @@
 <head>
     <title>eGate Solutions - TS4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css">
+    <link rel="stylesheet" href="./Content/jquery.mobile-1.4.0.min.css">
     <link rel="stylesheet" href="./Content/Views/Default.min.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
-    <script type="text/javascript" src="./Scripts/Views/Default.min.js"></script>
+    <script src="./Scripts/jquery-2.1.0.min.js"></script>
+    <script src="./Scripts/jquery.mobile-1.4.0.min.js"></script>
+    <script src="./Scripts/Views/Default.min.js"></script>
 </head>
-<body onload="window.resizeTo(440,550)">
+<body>
     <div data-role="page">
-        <div data-role="header" class="ui-btn-icon-right ui-icon-home" onclick="window.location='Index.html'"><h1>eGate Solutions TS4</h1></div>
+        <div data-role="header"><h1>eGate Solutions TS4</h1></div>
         <nav data-role="content">
-            JQuery Status <div id="status"></div>
-            <div id="imgsrc"></div>
-            <div id="urlpath"></div>
-            <div id="checkimage">Checking</div>
             <ul>
-                <li><a href="/Barset/Login.html"><img src="Images/48x48/Tasks.png" id="Menu1" alt="" width="48" height="48" />Barset</a></li>
-                <li><img src="Plane.png" alt="" width="48" height="48" />Flight</li>
-                <li><a href="#popupLogin" data-rel="popup" data-transition="pop"><img src="Images/48x48/Keys.png" alt="" width="48" height="48" />Login</a></li>
+                <li><a href="./Barset/Open.html" rel="external"><img src="Images/48x48/Tasks.png" alt="" width="48" height="48" />Barset</a></li>
+                <li><img src="Images/48x48/Plane.png" alt="" width="48" height="48" />Flight</li>
+                <li><a href="./Flight/Login.html" data-ajax="false" data-rel="external"><img src="Images/48x48/Keys.png" alt="" width="48" height="48" />Login</a></li>
                 <li><img src="Images/48x48/Dollar.gif" alt="" width="48" height="48" />Sales</li>
                 <li><a href="#pnlReports"><img src="Images/48x48/Chart.gif" alt="" width="48" height="48" />Reports</a></li>
-                <li><img src="Images/48x48/Sync.gif" alt="" width="48" height="48" />Sync</li>
-                <li><img src="Images/48x48/Truck.gif" alt="" width="48" height="48" />Catering</li>
+                <li><a href="./Sync/Default.html" rel="external"><img src="Images/48x48/Sync.png" alt="" width="48" height="48" />Sync</a></li>
+                <li><a href="./Catering/Default.html" rel="external"><img src="Images/48x48/Truck.gif" alt="" width="48" height="48" />Catering</a></li>
                 <li><a href="#pnlUtils"><img src="Images/48x48/Tools.gif" alt="" width="48" height="48" />Utilities</a></li>
-                <li><img src="Images/48x48/Forklift.png" alt="" width="48" height="48" />Uplift</li>
+                <li><a href="./Uplift/Default.html" data-ajax="false" rel="external"><img src="Images/48x48/Forklift.png" alt="" width="48" height="48" />Uplift</a></li>
             </ul>
             <br />
         </nav>
 
-        <div id="pnlUtils" data-role="panel" data-display="overlay" data-theme="b">
-            <h2>Utilities</h2>
+        <div id="pnlUtils" data-role="panel" data-display="overlay">
+            <div class="ui-bar">
+                <h3><img src="./Images/32x32/Settings.png" alt="" width="32" height="32" /> Utilities</h3>
+            </div>
+            <hr />
+            <table style="width:100%">
+                <tr>
+                    <td><label for="AirportMode">Airplane Mode:</label></td>
+                    <td>
+                        <select name="flip-1" id="AirportMode" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Wifi">Wi-Fi:</label></td>
+                    <td>
+                        <select name="flip-1" id="Wifi" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Bluetooth:</label></td>
+                    <td>
+                        <select name="flip-1" id="Bluetooth" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Screen Rotation:</label></td>
+                    <td>
+                        <select name="ScreenRotation" id="ScreenRotation" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h2 data-rel="close"><img src="/images/48x48/Chart.gif" alt="" width="32" height="32" /> Reports</h2>
-            <div style="margin: 0; width: 250px;" data-role="collapsible-set" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r" data-content-theme="a">
-                <div data-role="collapsible" >
-                    <h3>Inventory</h3>
-                    <ul data-role="listview">
-                        <li><a href="#" data-rel="dialog">Inventory Report #1</a></li>
-                        <li><a href="#" data-rel="dialog">Inventory Report #2</a></li>
-                        <li><a href="#" data-rel="dialog">Inventory Report #3</a></li>
-                        <li><a href="#" data-rel="dialog">Inventory Report #4</a></li>
-                    </ul>
-                </div>
-                <div data-role="collapsible">
-                    <h2>Cash Bags</h2>
-                    <ul data-role="listview">
-                        <li><a href="#" data-rel="dialog">Cash Bag Report #1</a></li>
-                        <li><a href="#" data-rel="dialog">Cash Bag Report #2</a></li>
-                        <li><a href="#" data-rel="dialog">Cash Bag Report #3</a></li>
-                        <li><a href="#" data-rel="dialog">Cash Bag Report #4</a></li>
-                    </ul>
-                </div>
-                <div data-role="collapsible">
-                    <h2>Crew</h2>
-                    <ul data-role="listview">
-                        <li><a href="#" data-rel="dialog">Crew Report #1</a></li>
-                        <li><a href="#" data-rel="dialog">Crew Report #2</a></li>
-                        <li><a href="#" data-rel="dialog">Crew Report #3</a></li>
-                        <li><a href="#" data-rel="dialog">Crew Report #4</a></li>
-                    </ul>
-                </div>
-            </div>
+            <h2 data-rel="close"><img src="Images/48x48/Chart.gif" alt="" width="32" height="32" /> Reports</h2>
+            <ul data-role="listview">
+                <li><a href="./Reports/OutofStockSummary.html" data-rel="external">Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="./Reports/SalesSummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="./Reports/StockSummary.html" data-rel="external">Stock Summary</a></li>
+                <li><a href="./Reports/Payment.html" data-rel="external">Payment</a></li>
+                <li><a href="./Reports/CategorySalesSummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="./Reports/ItemsSold-Pax.html" data-rel="external">Items Sold / Pax</a></li>
+            </ul>
         </div>
 
-        <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
-            <form>
-                <div style="padding:10px 20px;">
-                    <h3>Please sign in</h3>
-                    <label for="un" class="ui-hidden-accessible">Username:</label>
-                    <input type="text" name="user" id="un" value="" placeholder="username" data-theme="a">
-                    <label for="pw" class="ui-hidden-accessible">Password:</label>
-                    <input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a">
-                    <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
-                </div>
-            </form>
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="./Images/32x32/Info.png" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
         </div>
+
     </div>
-<script>
-
-    function UrlExists(url) {
-        var http = new XMLHttpRequest();
-        http.open('HEAD', url, false);
-        http.send();
-        return http.status != 404;
-    }
-
-    if ($.mobile) {
-        $("#status").html("Loaded");
-        $("#imgsrc").html($("#Menu1").attr("src"));
-        $("#urlpath").html(window.location.pathname);
-        $("#checkimage").html(UrlExists($("#Menu1").attr("src")));
-    } else {
-        $("#status").html("Not Loaded");
-    }
-</script>
 </body>
 </html>

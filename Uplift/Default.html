@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>eGate | Uplift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Content/jquery.mobile-1.4.0.min.css">
+    <link rel="stylesheet" href="/Content/Views/Uplift/Default.min.css">
+    <script src="/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="/Scripts/jquery.mobile-1.4.0.min.js"></script>
+    <script src="/Scripts/Views/Uplift/Default.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header" data-position="fixed">
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li><a href="/Default.html" rel="external" data-icon="home">Home</a></li>
+                    <li><a href="/Default.html" rel="external" data-icon="star">Sales</a></li>
+                    <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
+                </ul>
+            </div>
+            <h1><img src="../Images/48x48/Forklift.png" alt="" width="32" height="32" /> Uplift</h1>
+        </div>
+
+        <div data-role="content">
+            <select id="Warehouse" data-native-menu="false">
+                <option>Warehouse</option>
+                <option value="ORD">Chicago</option>
+                <option value="LAX">Los Angeles</option>
+                <option value="JFK">New York</option>
+                <option value="MIA">Miami</option>
+            </select>
+
+            <table data-role="table" id="table-custom-2" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
+                <thead>
+                    <tr class="ui-bar-d">
+                        <th>Item</th>
+                        <th>Qty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 1)">Apple Juice</a></td>
+                        <td id="item1" data-val="74">74</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 2)">Beer</a></td>
+                        <td id="item2" data-val="64">64</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 3)">Cappuccino</a></td>
+                        <td id="item3" data-val="87">87</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 4)">Cheese Baguette</a></td>
+                        <td id="item4" data-val="87">87</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 5)">Coca Cola</a></td>
+                        <td id="item5" data-val="87">87</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 6)">Coffee</a></td>
+                        <td id="item6" data-val="74">74</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 7)">Cranberry Juice</a></td>
+                        <td id="item7" data-val="78">78</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 8)">Orange Juice</a></td>
+                        <td id="item8" data-val="122">122</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 9)">Sandwich</a></td>
+                        <td id="item9" data-val="72">72</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" onclick="SelectItem(this, 10)">Sprite</a></td>
+                        <td id="item10" data-val="85">85</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="pnlReports" data-role="panel" data-display="overlay">
+            <h2 data-rel="close">
+                <img src="/images/48x48/Chart.gif" alt="" width="32" height="32" />Reports</h2>
+            <ul data-role="listview">
+                <li><a>Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="/Reports/SalesSummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="/Reports/StockSummary.html" data-rel="external">Stock Summary</a></li>
+                <li><a href="/Reports/Payment.html" data-rel="external">Payment</a></li>
+                <li><a href="/Reports/CategorySalesSummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="/Reports/ItemsSold-Pax.html" data-rel="external">Items Sold / Pax</a></li>
+            </ul>
+        </div>
+
+        <div data-role="popup" id="popupItem" data-theme="a" class="ui-corner-all">
+            <div style="padding:10px 20px;">
+                <h4 id="ItemName">Please sign in</h4>
+                <input type="number" id="ItemQty" value="" placeholder="Qty">
+                <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Update</button>
+            </div>
+        </div>
+
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="/Images/32x32/Info.png" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        </div>
+
+    </div>
+</body>
+</html>
