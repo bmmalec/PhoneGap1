@@ -84,7 +84,7 @@
     </div>
 <script>
 
-    phoneReady();
+    document.addEventListener("deviceready", phoneReady, false);
 
     function phoneReady() {
         //First, open our db    
