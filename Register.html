@@ -11,7 +11,12 @@
     <script type="text/javascript" src="./scripts/localstoragedb.js"></script>
 <script>
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+//    document.addEventListener("deviceready", onDeviceReady, false);
+
+    $(document).ready(function () {
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        onDeviceReady();
+    });
 
     function onDeviceReady() {
         //First, open our db    
