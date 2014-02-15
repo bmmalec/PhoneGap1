@@ -36,7 +36,7 @@
                     var itemid = row.itemid;
                     var itemname = row.itemname;
                     var price = row.usdprice;
-                    html += "<li onclick='SelectItem(" + itemid + ")'>" + itemname + "&nbsp;" + price + "</li>";
+                    html += "<li onmousedown='SelectItem(" + itemid + ")'>" + itemname + "&nbsp;" + price + "</li>";
                 }
             }
             else {
