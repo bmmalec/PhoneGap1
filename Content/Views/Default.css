@@ -1,8 +1,0 @@
-﻿img { vertical-align: middle; }
-nav ul { list-style-type: none; margin: 0; padding: 0; }
-nav ul li { width: 55px; height:85px; float: left; padding: 20px; text-align: center; }
-nav ul li img { display: block; border: 0 none; width:48px; margin:auto; }
-nav ul li a { text-decoration: none; }
-br { clear: both; }
-div[data-role="footer"] { text-align: center; }
-div[data-role="footer"] span { font-weight: normal; }

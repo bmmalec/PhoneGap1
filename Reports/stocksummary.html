@@ -23,7 +23,7 @@
                     <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
                 </ul>
             </div>
-            <h1><img src="../images/clear.gif" class="IconCharts" alt="" width="32" height="32" /> Out of Stock Summary</h1>
+            <h1><img src="../images/clear.gif" class="IconCharts" alt="" width="32" height="32" />Stock Summary</h1>
             <a id="btnPrintReport" href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-theme="b">Print</a>
         </div>
 
@@ -36,26 +36,26 @@
             <section id="Report"></section>
         </div>
 
-        <div data-role="footer" data-position="fixed">
-            <span>© Copyright 2014</span>
-        </div>
-
         <div id="pnlReports" data-role="panel" data-display="overlay">
             <h2 data-rel="close"><img src="../images/clear.gif" class="IconCharts" alt="" width="32" height="32" />Reports</h2>
             <ul data-role="listview">
-                <li><a>Out of Stock Summary</a></li>
+                <li><a href="outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
                 <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="salessummary.html" data-rel="external" >Sales Summary</a></li>
-                <li><a href="stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="salessummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="#">Stock Summary</a></li>
                 <li><a href="payment.html" data-rel="external">Payment</a></li>
                 <li><a href="categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
                 <li><a href="itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
             </ul>
         </div>
 
+        <div data-role="footer" data-position="fixed">
+            <span>© Copyright 2014</span>
+        </div>
+
         <div id="popupNotEnabled" data-role="popup">
             <p><img src="../images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
-        </div>
+        </div>   
     </div>
 
     <script id="FlightsTemplate" type="text/x-jquery-tmpl">
@@ -79,11 +79,11 @@
             </thead>
             <tbody>
             {{if Rows}}
-                    {{each Rows}}<tr><td>${ItemName}</td><td>${Qty}</td></tr>{{/each}}
+                    {{each Rows}}<tr><td>${ItemName}</td><td>${OpeningCount}</td><td>${ClosingCount}</td></tr>{{/each}}
             {{/if}}
             </tbody>
         </table>
     </script>
-    <script src="../js/reports/outofstocksummary.js"></script>
+    <script src="../js/reports/stocksummary.js"></script>
 </body>
 </html>

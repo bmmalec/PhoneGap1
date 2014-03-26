@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>eGate | Flight Select</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/jquery/jquery.mobile-1.4.1.min.css">
+    <link rel="stylesheet" href="./css/master.min.css">
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/jquery/jquery.mobile-1.4.1.min.js"></script>
+    <script src="./js/jquery/jquery.alphanumeric.min.js"></script>
+    <script src="./js/jquery/jquery.tmpl.min.js"></script>
+    <script src="./js/date.format.min.js"></script>
+    <script src="./js/exception.js"></script>
+    <script src="./js/dataaccess.js"></script>
+    <script src="./js/businesslayer.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li><a href="./index.html" rel="external" data-icon="home">Home</a></li>
+                    <li><a href="./sales/shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
+                    <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
+                </ul>
+            </div>
+            <h1><img src="./images/32x32/plane.png" alt="" width="32" height="32" /> Flight Select</h1>
+        </div>
+
+        <form data-role="content" id="frmSelectFlight" action="flightlogin.html" data-ajax="false">
+            <select id="FlightInstance" data-native-menu="false" required="required" onchange="SelectFlight(this)">
+                <option>Select Flight</option>
+                <option value="-1">Manual Entry</option>
+                <optgroup label="Scheduled Flights" id="FlightsOpen"></optgroup>
+                <optgroup label="Closed Flights" id="FlightsClosed"></optgroup>
+            </select>
+            <fieldset>
+                <legend></legend>
+                <input type="number" id="FlightNum" placeholder="Flight #" required="required" />
+                <input type="text" id="Route" placeholder="Route" maxlength="7" required="required" />
+                <input type="date" id="FlightDate" placeholder="Date" data-role="date" required="required" />
+                <input type="text" id="TailNum" placeholder="Tail #" required="required" />
+                <input type="number" id="PAX" placeholder="PAX" required="required" />
+            </fieldset>
+            <input id="btnOpenFlight" type="submit" value="Open Flight" data-ajax="false" class="ui-btn" />
+        </form>
+
+        <div data-role="footer" data-position="fixed">
+            <span>© Copyright 2014</span>
+        </div>
+
+        <div id="pnlReports" data-role="panel" data-display="overlay">
+            <h2 data-rel="close">
+                <img src="./images/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
+            <ul data-role="listview">
+                <li><a href="./reports/outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="./reports/salessummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="./reports/stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="./reports/payment.html" data-rel="external">Payment</a></li>
+                <li><a href="./reports/categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="./reports/itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
+            </ul>
+        </div>
+
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="./images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        </div>
+    </div>
+
+    <script id="FlightsTemplate" type="text/x-jquery-tmpl">
+        <option value="${FlightInstanceID}">Flight ${FlightNum} ${Origin}-${Dest}</option>
+    </script>
+    <script src="./js/flightopen.js"></script>
+</body>
+</html>

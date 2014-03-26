@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>eGate | Sync Devices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/jquery/jquery.mobile-1.4.1.min.css">
+    <link rel="stylesheet" href="./css/master.min.css">
+    <link rel="stylesheet" href="./css/syncdevices.min.css">
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/jquery/jquery.mobile-1.4.1.js"></script>
+    <script src="./js/syncdevices.js"></script>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li><a href="./index.html" rel="external" data-icon="home">Home</a></li>
+                    <li><a href="../sales/shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
+                    <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
+                </ul>
+            </div>
+            <h1><img src="./images/32x32/sync.png" alt="" width="32" height="32" /> Synchronize Devices</h1>
+        </div>
+
+        <div data-role="content">
+            <select id="DeviceID" data-native-menu="false" multiple="multiple">
+                <option>Select Devices</option>
+                <option value="All">[ All Devices ]</option>
+                <option value="1T30MSILAC670">1T30MSILAC670</option>
+                <option value="1T30MSILAC671">1T30MSILAC671</option>
+                <option value="1T30MSILAC672">1T30MSILAC672</option>
+                <option value="1T30MSILAC673">1T30MSILAC673</option>
+            </select>
+
+            <a href="#" class="ui-btn"><img src="./images/32x32/refresh.png" alt="" width="32" height="32" /> Refresh Devices</a>
+            <a href="#popupNotEnabled" class="ui-btn" data-transition="pop" data-rel="popup"><img src="./images/32x32/bluetooth.png" alt="" width="32" height="32" /> Bluetooth Push</a>
+
+            <fieldset id="fsDeviceType" data-role="controlgroup" data-type="horizontal">
+                <legend></legend>
+                <label for="DeviceType1">Master</label>
+                <input name="DeviceType" id="DeviceType1" type="radio" value="1" checked="checked">
+                <label for="DeviceType0">Satellite</label>
+                <input name="DeviceType" id="DeviceType0" type="radio" value="0">
+            </fieldset>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <span>© Copyright 2014</span>
+        </div>
+        
+        <div id="pnlReports" data-role="panel" data-display="overlay">
+            <h2 data-rel="close"><img src="/images/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
+            <ul data-role="listview">
+                <li><a href="./reports/outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="./reports/salessummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="./reports/stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="./reports/payment.html" data-rel="external">Payment</a></li>
+                <li><a href="./reports/categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="./reports/itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
+            </ul>
+        </div>
+
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="./images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        </div>
+    </div>
+</body>
+</html>

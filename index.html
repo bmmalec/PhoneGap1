@@ -1,35 +1,35 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <title>eGate Solutions - TS4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./Content/jquery.mobile-1.4.0.min.css">
-    <link rel="stylesheet" href="./Content/Views/Default.min.css">
-    <script src="./scripts/jquery-2.1.0.min.js"></script>
-    <script src="./scripts/jquery.mobile-1.4.0.min.js"></script>
-    <script src="./scripts/Views/Default.min.js"></script>
+    <link rel="stylesheet" href="./css/jquery/jquery.mobile-1.4.1.min.css">
+    <link rel="stylesheet" href="./css/master.min.css">
+    <link rel="stylesheet" href="./css/home.min.css">
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/jquery/jquery.mobile-1.4.1.min.js"></script>
 </head>
 <body>
     <div data-role="page">
-        <div data-role="header"><h1>eGate Solutions TS4</h1></div>
-        <nav data-role="content">
-            <ul>
-                <li><a href="./Barset/Open.html" rel="external"><img src="Images/48x48/Tasks.png" alt="" width="48" height="48" />Barset</a></li>
-                <li><img src="Images/48x48/Plane.png" alt="" width="48" height="48" />Flight</li>
-                <li><a href="./Flight/Login.html" data-ajax="false" data-rel="external"><img src="Images/48x48/Keys.png" alt="" width="48" height="48" />Login</a></li>
-                <li><a href="./Register.html" rel="external"><img src="Images/48x48/Dollar.gif" alt="" width="48" height="48" />Sales</a></li>
-                <li><a href="#pnlReports"><img src="Images/48x48/Chart.gif" alt="" width="48" height="48" />Reports</a></li>
-                <li><a href="./Sync.html" rel="external"><img src="Images/48x48/Sync.png" alt="" width="48" height="48" />Sync</a></li>
-                <li><a href="./Catering/Register.html" rel="external"><img src="Images/48x48/Truck.gif" alt="" width="48" height="48" />Catering</a></li>
-                <li><a href="#pnlUtils"><img src="Images/48x48/Tools.gif" alt="" width="48" height="48" />Utilities</a></li>
-                <li><a href="./Uplift/Default.html" data-ajax="false" rel="external"><img src="Images/48x48/Forklift.png" alt="" width="48" height="48" />Uplift</a></li>
-            </ul>
-            <br />
-        </nav>
-        <div id="pnlUtils" data-role="panel" data-display="overlay">
-            <div class="ui-bar">
-                <h3><img src="./Images/32x32/Settings.png" alt="" width="32" height="32" /> Utilities</h3>
-            </div>
+        <!-- Header -->
+        <div data-role="header">
+            <a href="#pnlSiteMenu" data-role="button" data-icon="home" data-iconpos="notext"></a>
+            <h1>eGate Solutions TS4</h1>
+        </div>
+
+        <!-- Content/Body -->
+        <div data-role="content" id="MainContent">
+            <img id="CompanyLogo" src="./images/eGate.png" alt="" width="266" height="165" />
+        </div>
+
+        <!-- Footer -->
+        <div data-role="footer" data-position="fixed">
+            <span>© Copyright 2014</span>
+        </div>
+
+        <!-- Settings -->
+        <div id="pnlSettings" data-role="panel" data-display="overlay">
+            <h3><a href="#" data-rel="close"><img src="./images/clear.gif" class="IconSettings" alt="" width="32" height="32" /> Settings</a></h3>
             <hr />
             <table style="width:100%">
                 <tr>
@@ -71,23 +71,39 @@
             </table>
         </div>
 
+        <!-- Reports -->
         <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h2 data-rel="close"><img src="Images/48x48/Chart.gif" alt="" width="32" height="32" /> Reports</h2>
+            <h3><a href="#" data-rel="close"><img src="/images/clear.gif" class="IconCharts" alt="" width="32" height="32" /> Reports</a></h3>
             <ul data-role="listview">
-                <li><a href="Reports/OutofStockSummary.html" data-rel="external">Out of Stock Summary</a></li>
+                <li><a href="./reports/outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
                 <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="./Reports/SalesSummary.html" data-rel="external">Sales Summary</a></li>
-                <li><a href="./Reports/StockSummary.html" data-rel="external">Stock Summary</a></li>
-                <li><a href="./Reports/Payment.html" data-rel="external">Payment</a></li>
-                <li><a href="./Reports/CategorySalesSummary.html" data-rel="external">Category Sales Summary</a></li>
-                <li><a href="./Reports/ItemsSold-Pax.html" data-rel="external">Items Sold / Pax</a></li>
+                <li><a href="./reports/salessummary.html" data-rel="external">Sales Summary</a></li>
+                <li><a href="./reports/stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="./reports/payment.html" data-rel="external">Payment</a></li>
+                <li><a href="./reports/categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
+                <li><a href="./reports/itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
             </ul>
         </div>
 
-        <div id="popupNotEnabled" data-role="popup">
-            <p><img src="./Images/32x32/Info.png" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        <!-- Site Menu -->
+        <div id="pnlSiteMenu" data-role="panel" data-display="overlay" data-theme="b">
+            <ul data-role="listview">
+                <li><a href="./barset/open.html" rel="external" data-ajax="false">Barset</a></li>
+                <li><a href="./flightopen.html" rel="external" data-ajax="false">Flight Select</a></li>
+                <li><a href="./flightlogin.html" data-ajax="false" data-rel="external">FA Login</a></li>
+                <li><a href="./sales/shoppingcart.html" data-ajax="false" data-rel="external">Sales</a></li>
+                <li><a href="#pnlReports">Reports</a></li>
+                <li><a href="./syncdevices.html" rel="external">Sync</a></li>
+                <li><a href="./catering.html" rel="external" data-ajax="false">Catering</a></li>
+                <li><a href="#pnlSettings">Settings</a></li>
+                <li><a href="./uplift.html" data-ajax="false" rel="external">Uplift</a></li>
+            </ul>
         </div>
 
+        <!-- Popup/Not Enabled -->
+        <div id="popupNotEnabled" data-role="popup">
+            <p><img src="./images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+        </div>
     </div>
 </body>
 </html>
