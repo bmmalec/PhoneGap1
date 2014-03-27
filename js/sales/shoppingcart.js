@@ -15,7 +15,8 @@ function initialize() {
             ShowCategoryItems(catID);
         });
 
-        CategoryLoad("1101");
+        // Debugging: this line was commented out for the demo.
+        //CategoryLoad("1101");
         CurrencyLoad();
 
         // RULE: Do Not Show the Checkout button or Currency dropdown if the cart is empty.
