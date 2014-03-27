@@ -46,7 +46,6 @@
     // STEP 2: Clear the input and Set Focus().
     $("#EmployeeNum").val("");
     $("#EmployeeNum").focus();
-
 }
 
 function DeleteCrew(cntrl) {

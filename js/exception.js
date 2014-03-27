@@ -1,10 +1,12 @@
-﻿var Exception = function () {
+﻿var ex = (function () {
 
-    this.Log = function (err, functionName) {
+    function log(err, functionName) {
         // ToDo: Records the Exception
+        console.log("ERROR: " + err.message + "\nCode=" + err.code);
         alert("ERROR: " + err.message + "\nCode=" + err.code);
-    };
-};
+    }
 
-// Global Variable
-ex = new Exception();
+    return {
+        log: log
+    };
+}());

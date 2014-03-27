@@ -1,11 +1,19 @@
-﻿var BusinessLayer = function () {
+﻿appSettings = {
+    Version: "1.0.0.0 beta",
+    Company: "TPS Systems",
+    EndPoint: "http://inflightdev.devstuff.us/datainterchange.asmx"
+    //EndPoint: "http://inflight.azurewebsites.net/DataInterchange.asmx"
+    //EndPoint: "http://localhost:54527/DataInterchange.asmx"
+};
+
+var bl = (function () {
     this.Name = "BusinessLayer";
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // NAME:    BluetoothPush()
     // DEFINE:  Synchronize transactional data with other devices on this flight via Bluetooth.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.BluetoothPush = function () {
+    function BluetoothPush () {
         try {
 
         }
@@ -18,7 +26,7 @@
     // NAME:    ChangeDeviceType()
     // DEFINE:  Toggle the device between Master/Satellite.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.ChangeDeviceType = function (isMaster) {
+    function ChangeDeviceType (isMaster) {
         try {
 
         }
@@ -32,7 +40,7 @@
     // NAME:    CloseBarset()
     // DEFINE:  Close out a Barset (No more transactions or updates allowed).
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.CloseBarset = function (barsetNumber) {
+    function CloseBarset (barsetNumber) {
         try {
 
         }
@@ -46,7 +54,7 @@
     // NAME:    CloseFlight()
     // DEFINE:  Close out a flight instance (sector or leg).
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.CloseFlight = function (flightInstanceID) {
+    function CloseFlight (flightInstanceID) {
 
     };
 
@@ -54,7 +62,7 @@
     // NAME:    FALogin()
     // DEFINE:  Log a Crew member into a flight instance
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.FALogin = function (crewID, barsetNumber) {
+    function FALogin (crewID, barsetNumber) {
         try {
 
         }
@@ -67,7 +75,7 @@
     // NAME:    FALogout()
     // DEFINE:  Log a Crew member into a flight instance
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.FALogout = function (crewID, barsetNumber) {
+    function FALogout (crewID, barsetNumber) {
         try {
 
         }
@@ -80,7 +88,7 @@
     // NAME:    getDevices()
     // DEFINE:  Returns a list of devices that are visible via Bluetooth.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.getDevices = function () {
+    function getDevices () {
         try {
             return true;
         }
@@ -94,7 +102,7 @@
     // NAME: LastSyncDate()
     // DEFINE:  Returns the Date the device as last synched to the back office.
     //////////////////////////////////////////////////////////////////////////////////////////////////
-    this.LastSyncDate = function () {
+    function LastSyncDate () {
         try {
             var lastSyncDate = new Date(localStorage.LastSyncDate);
             return lastSyncDate;
@@ -105,11 +113,32 @@
         }
     };
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    // NAME:    onSynchronized()
+    // SCOPE:   Private
+    // DEFINE:  Called after Synchronize() has been executed.
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    function onSynchronized(results) {
+        try {
+            localStorage.LastSyncDate = formatJSONDate(results.SyncDate);
+            localStorage.LastSyncStatus = results.Successful;
+            localStorage.LastSyncMessage = results.Message;
+
+            if (results.Successful) {
+                // Refresh the LocalDatabase.
+                da.databaseRefresh(results);
+            }
+        }
+        catch (err) {
+            ex.log(err, this.Name + ".onSynchronized(Results:" + results + ")");
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // NAME:    OpenBarset()
     // DEFINE:  Opens a Barset for business ().
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.OpenBarset = function (barsetNumber) {
+    function OpenBarset (barsetNumber) {
         try {
             return true;
         }
@@ -119,7 +148,7 @@
         }
     };
 
-    this.OpenFlight = function (flightInstanceID) {
+    function OpenFlight (flightInstanceID) {
         try {
             return true;
         }
@@ -133,9 +162,27 @@
     // NAME:    Sync()
     // DEFINE:  Synchronize this device with the back office.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    this.Sync = function (startDate) {
+    function Synchronize (startDate) {
         try {
-            // ToDo: Synchronize with the back office web services.
+            var endPoint = appSettings.EndPoint;
+            $.ajax({
+                type: 'POST',
+                crossDomain: true,
+                url: appSettings.EndPoint + '/Synchronize',
+                contentType: 'application/json; charset=utf-8',
+                data: '{UID:' + localStorage.UID + '}',
+                dataType: 'json',
+                success: function (results) {
+                    var nData = jQuery.parseJSON(results.d);
+                    onSynchronized(nData);
+                    console.log("Synchronize Successful.");
+                },
+                error: function (results) {
+                    console.log("Synchronize Failed.");
+                    ex.log(new Error(results.responseText), this.Name + ".synchronize()");
+                    onSynchronized({ Successful: false, SyncDate: new Date(), Message: "Error " + results.status + ": Communication Error." });
+                }
+            });
 
             // Update LastSyncDate
             localStorage.LastSyncDate = new Date();
@@ -147,10 +194,22 @@
         }
     };
 
-};
+    /*** Returns the Exposed Properties & Methods ***/
+    return {
+        BluetoothPush: BluetoothPush,
+        ChangeDeviceType: ChangeDeviceType,
+        CloseBarset: CloseBarset,
+        CloseFlight: CloseFlight,
+        FALogin: FALogin,
+        FALogout: FALogout,
+        getDevices: getDevices,
+        LastSyncDate: LastSyncDate,
+        OpenBarset: OpenBarset,
+        OpenFlight: OpenFlight,
+        Synchronize: Synchronize
+    }
+}());
 
-// Global Variable
-bl = new BusinessLayer();
 
 // ===================================================================================================
 //  NAME:   IsNumeric()

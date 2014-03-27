@@ -28,7 +28,7 @@ function Sync() {
     $.mobile.loading("show");
     try{
         var syncDate = StringToDate($("#SyncDate").val());
-        if (bl.Sync(syncDate)) {
+        if (bl.Synchronize(syncDate)) {
             // SUCCESSFUL - Synchronization with back office.
         }
         else {
