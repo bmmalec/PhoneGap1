@@ -19,7 +19,7 @@
 
         <!-- Content/Body -->
         <div data-role="content" id="MainContent">
-            <img id="CompanyLogo" src="./images/eGate.png" alt="" width="266" height="165" />
+            <img id="CompanyLogo" src="./imgs/eGate.png" alt="" width="266" height="165" />
         </div>
 
         <!-- Footer -->
@@ -27,9 +27,38 @@
             <span>© Copyright 2014</span>
         </div>
 
+        <!-- Reports -->
+        <div id="pnlReports" data-role="panel" data-display="overlay">
+            <h3><a href="#" data-rel="close"><img src="./imgs/clear.gif" class="IconCharts" alt="" width="32" height="32" /> Reports</a></h3>
+            <ul data-role="listview">
+                <li><a href="rptoutofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Sales Summary</a></li>
+                <li><a href="rptstocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Payment</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Category Sales Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Items Sold / PAX</a></li>
+            </ul>
+        </div>
+
+        <!-- Site Menu -->
+        <div id="pnlSiteMenu" data-role="panel" data-display="overlay" data-theme="b">
+            <ul data-role="listview">
+                <li><a href="barsetopen.html" rel="external" data-ajax="false">Barset</a></li>
+                <li><a href="flightopen.html" rel="external" data-ajax="false">Flight Select</a></li>
+                <li><a href="flightlogin.html" data-ajax="false" data-rel="external">FA Login</a></li>
+                <li><a href="shoppingcart.html" data-ajax="false" data-rel="external">Sales</a></li>
+                <li><a href="#pnlReports">Reports</a></li>
+                <li><a href="syncdevices.html" rel="external">Sync</a></li>
+                <li><a href="catering.html" rel="external" data-ajax="false">Catering</a></li>
+                <li><a href="#pnlSettings">Settings</a></li>
+                <li><a href="uplift.html" data-ajax="false" rel="external">Uplift</a></li>
+            </ul>
+        </div>
+
         <!-- Settings -->
         <div id="pnlSettings" data-role="panel" data-display="overlay">
-            <h3><a href="#" data-rel="close"><img src="./images/clear.gif" class="IconSettings" alt="" width="32" height="32" /> Settings</a></h3>
+            <h3><a href="#" data-rel="close"><img src="./imgs/clear.gif" class="IconSettings" alt="" width="32" height="32" /> Settings</a></h3>
             <hr />
             <table style="width:100%">
                 <tr>
@@ -71,38 +100,9 @@
             </table>
         </div>
 
-        <!-- Reports -->
-        <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h3><a href="#" data-rel="close"><img src="/images/clear.gif" class="IconCharts" alt="" width="32" height="32" /> Reports</a></h3>
-            <ul data-role="listview">
-                <li><a href="./reports/outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="./reports/salessummary.html" data-rel="external">Sales Summary</a></li>
-                <li><a href="./reports/stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
-                <li><a href="./reports/payment.html" data-rel="external">Payment</a></li>
-                <li><a href="./reports/categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
-                <li><a href="./reports/itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
-            </ul>
-        </div>
-
-        <!-- Site Menu -->
-        <div id="pnlSiteMenu" data-role="panel" data-display="overlay" data-theme="b">
-            <ul data-role="listview">
-                <li><a href="./barset/open.html" rel="external" data-ajax="false">Barset</a></li>
-                <li><a href="./flightopen.html" rel="external" data-ajax="false">Flight Select</a></li>
-                <li><a href="./flightlogin.html" data-ajax="false" data-rel="external">FA Login</a></li>
-                <li><a href="./sales/shoppingcart.html" data-ajax="false" data-rel="external">Sales</a></li>
-                <li><a href="#pnlReports">Reports</a></li>
-                <li><a href="./syncdevices.html" rel="external">Sync</a></li>
-                <li><a href="./catering.html" rel="external" data-ajax="false">Catering</a></li>
-                <li><a href="#pnlSettings">Settings</a></li>
-                <li><a href="./uplift.html" data-ajax="false" rel="external">Uplift</a></li>
-            </ul>
-        </div>
-
         <!-- Popup/Not Enabled -->
         <div id="popupNotEnabled" data-role="popup">
-            <p><img src="./images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+            <p><img src="./imgs/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
         </div>
     </div>
 </body>

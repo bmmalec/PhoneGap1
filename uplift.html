@@ -17,13 +17,13 @@
         <div data-role="header" data-position="fixed">
             <div data-role="navbar" data-iconpos="left">
                 <ul>
-                    <li><a href="./index.html" rel="external" data-icon="home">Home</a></li>
-                    <li><a href="./sales/shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
+                    <li><a href="#pnlSiteMenu" data-icon="home">Home</a></li>
+                    <li><a href="shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
                     <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
                 </ul>
             </div>
             <h1>
-                <img src="./images/48x48/forklift.png" alt="" width="32" height="32" />
+                <img src="./imgs/48x48/forklift.png" alt="" width="32" height="32" />
                 Uplift</h1>
         </div>
 
@@ -84,20 +84,80 @@
             </table>
         </div>
 
+        <!-- Reports -->
         <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h2 data-rel="close">
-                <img src="/images/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
+            <h2 data-rel="close"><img src="./imgs/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
             <ul data-role="listview">
-                <li><a href="./reports/outofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
+                <li><a href="rptoutofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
                 <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="./reports/salessummary.html" data-rel="external">Sales Summary</a></li>
-                <li><a href="./reports/stocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
-                <li><a href="./reports/payment.html" data-rel="external">Payment</a></li>
-                <li><a href="./reports/categorysalessummary.html" data-rel="external">Category Sales Summary</a></li>
-                <li><a href="./reports/itemssold-pax.html" data-rel="external">Items Sold / PAX</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Sales Summary</a></li>
+                <li><a href="rptstocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Payment</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Category Sales Summary</a></li>
+                <li><a href="#popupNotEnabled" data-rel="popup">Items Sold / PAX</a></li>
             </ul>
         </div>
 
+        <!-- Site Menu -->
+        <div id="pnlSiteMenu" data-role="panel" data-display="overlay" data-theme="b">
+            <ul data-role="listview">
+                <li><a href="barsetopen.html" rel="external" data-ajax="false">Barset</a></li>
+                <li><a href="flightopen.html" rel="external" data-ajax="false">Flight Select</a></li>
+                <li><a href="flightlogin.html" data-ajax="false" data-rel="external">FA Login</a></li>
+                <li><a href="shoppingcart.html" data-ajax="false" data-rel="external">Sales</a></li>
+                <li><a href="#pnlReports">Reports</a></li>
+                <li><a href="syncdevices.html" rel="external">Sync</a></li>
+                <li><a href="catering.html" rel="external" data-ajax="false">Catering</a></li>
+                <li><a href="#pnlSettings">Settings</a></li>
+                <li><a href="uplift.html" data-ajax="false" rel="external">Uplift</a></li>
+            </ul>
+        </div>
+
+        <!-- Settings -->
+        <div id="pnlSettings" data-role="panel" data-display="overlay">
+            <h3><a href="#" data-rel="close"><img src="./imgs/clear.gif" class="IconSettings" alt="" width="32" height="32" /> Settings</a></h3>
+            <hr />
+            <table style="width:100%">
+                <tr>
+                    <td><label for="AirportMode">Airplane Mode:</label></td>
+                    <td>
+                        <select name="flip-1" id="AirportMode" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Wifi">Wi-Fi:</label></td>
+                    <td>
+                        <select name="flip-1" id="Wifi" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Bluetooth:</label></td>
+                    <td>
+                        <select name="flip-1" id="Bluetooth" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Bluetooth">Screen Rotation:</label></td>
+                    <td>
+                        <select name="ScreenRotation" id="ScreenRotation" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1" selected="selected">On</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Popup/Not Enabled -->
         <div data-role="popup" id="popupItem" data-theme="a" class="ui-corner-all">
             <div style="padding: 10px 20px;">
                 <h4 id="ItemName">Please sign in</h4>
@@ -105,9 +165,8 @@
                 <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Update</button>
             </div>
         </div>
-
         <div id="popupNotEnabled" data-role="popup">
-            <p><img src="./images/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
+            <p><img src="./imgs/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
         </div>
 
         <script id="WarehouseTemplate" type="text/x-jquery-tmpl">

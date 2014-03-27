@@ -1,66 +1,52 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>eGate | Flight Select</title>
+    <title>eGate | Shopping Cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/jquery/jquery.mobile-1.4.1.min.css">
     <link rel="stylesheet" href="./css/master.min.css">
+    <link rel="stylesheet" href="./css/sales/sales.min.css">
     <script src="./js/jquery/jquery.min.js"></script>
     <script src="./js/jquery/jquery.mobile-1.4.1.min.js"></script>
-    <script src="./js/jquery/jquery.alphanumeric.min.js"></script>
     <script src="./js/jquery/jquery.tmpl.min.js"></script>
-    <script src="./js/date.format.min.js"></script>
     <script src="./js/exception.js"></script>
     <script src="./js/dataaccess.js"></script>
     <script src="./js/businesslayer.js"></script>
 </head>
 <body>
     <div data-role="page">
+        <!-- Header -->
         <div data-role="header">
-            <div data-role="navbar" data-iconpos="left">
+            <nav data-role="navbar" data-iconpos="left">
                 <ul>
                     <li><a href="#pnlSiteMenu" data-icon="home">Home</a></li>
-                    <li><a href="shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
-                    <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
+                    <li><a href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="tag">Promo</a></li>                    
+                    <li><a href="receipts.html" rel="external" data-ajax="false" data-icon="grid">Receipts</a></li>
                 </ul>
-            </div>
-            <h1><img src="./imgs/32x32/plane.png" alt="" width="32" height="32" /> Flight Select</h1>
+                <ul>
+                    <li><a href="#" data-icon="recycle">Clear</a></li>
+                    <li><a href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="action">Comp</a></li>
+                    <li><a href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="delete">Void</a></li>
+                </ul>
+            </nav>
+            <a id="btnMenu" href="#pnlCategories" data-icon="bullets" data-theme="b">Menu</a>
+            <h1 id="PageTitle"><img src="./imgs/32x32/shoppingcart.png" alt="" width="32" height="32" />Shopping Cart</h1>
+            <a id="btnCheckout" href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="check" data-theme="b">Checkout</a>
         </div>
 
-        <form data-role="content" id="frmSelectFlight" action="flightlogin.html" data-ajax="false">
-            <select id="FlightInstance" data-native-menu="false" required="required" onchange="SelectFlight(this)">
-                <option>Select Flight</option>
-                <option value="-1">Manual Entry</option>
-                <optgroup label="Scheduled Flights" id="FlightsOpen"></optgroup>
-                <optgroup label="Closed Flights" id="FlightsClosed"></optgroup>
-            </select>
-            <fieldset>
-                <legend></legend>
-                <input type="number" id="FlightNum" placeholder="Flight #" required="required" />
-                <input type="text" id="Route" placeholder="Route" maxlength="7" required="required" />
-                <input type="date" id="FlightDate" placeholder="Date" data-role="date" required="required" />
-                <input type="text" id="TailNum" placeholder="Tail #" required="required" />
-                <input type="number" id="PAX" placeholder="PAX" required="required" />
-            </fieldset>
-            <input id="btnOpenFlight" type="submit" value="Open Flight" data-ajax="false" class="ui-btn" />
-        </form>
+        <!-- Content/Body -->
+        <div data-role="content">
+            <section id="ShoppingCart"><h1>Empty</h1></section>
+            <section id="CurrencyContainer">
+                <select id="Currency" data-native-menu="false" required="required">
+                    <option>Select Currency</option>
+                </select>
+            </section>
+        </div>
 
+        <!-- Footer -->
         <div data-role="footer" data-position="fixed">
             <span>© Copyright 2014</span>
-        </div>
-
-        <!-- Reports -->
-        <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h2 data-rel="close"><img src="./imgs/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
-            <ul data-role="listview">
-                <li><a href="rptoutofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Sales Summary</a></li>
-                <li><a href="rptstocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Payment</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Category Sales Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Items Sold / PAX</a></li>
-            </ul>
         </div>
 
         <!-- Site Menu -->
@@ -122,15 +108,51 @@
             </table>
         </div>
 
-        <!-- Popup/Not Enabled -->
+        <!-- Popup/Panels -->
         <div id="popupNotEnabled" data-role="popup">
             <p><img src="./imgs/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
         </div>
-    </div>
+        <div id="pnlCategories" data-role="panel" data-display="overlay">
+            <h2 data-rel="close"><img src="./imgs/32x32/food.png" alt="" width="32" height="32" /> Menu</h2>
+            <ul id="Categories" data-role="listview" data-count-theme="b"></ul>
+        </div>
 
-    <script id="FlightsTemplate" type="text/x-jquery-tmpl">
-        <option value="${FlightInstanceID}">Flight ${FlightNum} ${Origin}-${Dest}</option>
-    </script>
-    <script src="./js/flightopen.js"></script>
+        <!-- Templates -->
+        <script id="CategoryTemplate" type="text/x-jquery-tmpl">
+            <li><a href="#" data-rel="external" data-val="${CategoryID}">${CategoryName} <span class="ui-li-count">${Count}</span></a></li>
+        </script>
+        <script id="CurrencyTemplate" type="text/x-jquery-tmpl">
+            <option value="${Abbreviation}" data-val="${Rate}" {{if Default }} selected="selected" {{/if}}>${Name}</option>
+        </script>
+        <script id="CartTemplate" type="text/x-jquery-tmpl">
+            <table id="tblShoppingCart" class="table-stripe">
+                <thead>
+                    <tr class="ui-bar-b">
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{each Items}}
+                    <tr>
+                        <td>${ItemName}</td>
+                        <td>${Qty}</td>
+                        <td>${formatCurrency(Price)}</td>
+                        <td>${formatCurrency(Price)}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+                <tfoot class="ui-bar-b">
+                    <tr>
+                        <th colspan="3">${Currency} SubTotal:</th>
+                        <th>${CurrencySymbol}${formatCurrency(SubTotal)}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </script>
+    </div>
+    <script src="./js/sales/shoppingcart.js"></script>
 </body>
 </html>

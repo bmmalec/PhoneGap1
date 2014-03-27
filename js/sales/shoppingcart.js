@@ -2,24 +2,33 @@
 // Page & Control Initializers
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $.mobile.loading("show");
-try {
-    $("#Categories a").click(function (e) {
-        // NOTE: The CategoryID  is stored in the "data-val" attribute of each category list item.
-        var catID = $(this).attr("data-val");
-        ShowCategoryItems(catID);
-    });
-
-    CategoryLoad("1101");
-    CurrencyLoad();
-
-    // RULE: Do Not Show the Checkout button or Currency dropdown if the cart is empty.
-    $("#btnCheckout").hide();
-    $("#CurrencyContainer").hide();
-}
-catch (err) {
-    ex.Log(err, "ShoppingCart.Init()");
-}
+$(function () {
+    document.addEventListener("deviceready", initialize(), false);
+});
 $.mobile.loading("hide");
+
+function initialize() {
+    try {
+        $("#Categories a").click(function (e) {
+            // NOTE: The CategoryID  is stored in the "data-val" attribute of each category list item.
+            var catID = $(this).attr("data-val");
+            ShowCategoryItems(catID);
+        });
+
+        CategoryLoad("1101");
+        CurrencyLoad();
+
+        // RULE: Do Not Show the Checkout button or Currency dropdown if the cart is empty.
+        $("#btnCheckout").hide();
+        $("#CurrencyContainer").hide();
+
+        //Debugging: This line is for demo purposes Only!
+        ShoppingCartRefresh(0);
+    }
+    catch (err) {
+        ex.Log(err, "ShoppingCart.Init()");
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NAME: CategoryLoad()

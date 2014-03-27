@@ -1,66 +1,39 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>eGate | Flight Select</title>
+    <title>eGate | Receipts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/jquery/jquery.mobile-1.4.1.min.css">
     <link rel="stylesheet" href="./css/master.min.css">
+    <link rel="stylesheet" href="./css/sales/sales.min.css">
     <script src="./js/jquery/jquery.min.js"></script>
     <script src="./js/jquery/jquery.mobile-1.4.1.min.js"></script>
-    <script src="./js/jquery/jquery.alphanumeric.min.js"></script>
     <script src="./js/jquery/jquery.tmpl.min.js"></script>
-    <script src="./js/date.format.min.js"></script>
     <script src="./js/exception.js"></script>
     <script src="./js/dataaccess.js"></script>
     <script src="./js/businesslayer.js"></script>
+    <style>
+    </style>
 </head>
 <body>
     <div data-role="page">
         <div data-role="header">
-            <div data-role="navbar" data-iconpos="left">
+            <nav data-role="navbar" data-iconpos="left">
                 <ul>
                     <li><a href="#pnlSiteMenu" data-icon="home">Home</a></li>
-                    <li><a href="shoppingcart.html" rel="external" data-icon="star">Sales</a></li>
-                    <li><a href="#pnlReports" data-icon="grid">Reports</a></li>
+                    <li><a href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="tag">Promo</a></li>                    
+                    <li><a href="shoppingcart.html" rel="external" data-ajax="false" data-icon="star">Sales</a></li>
                 </ul>
-            </div>
-            <h1><img src="./imgs/32x32/plane.png" alt="" width="32" height="32" /> Flight Select</h1>
+            </nav>
+            <h1 id="PageTitle"><img src="./imgs/32x32/shoppingcart.png" alt="" width="32" height="32" />Receipts</h1>
+            <a id="btnPrint" href="#popupNotEnabled" data-transition="pop" data-rel="popup" data-icon="check" data-theme="b">Print</a>
         </div>
 
-        <form data-role="content" id="frmSelectFlight" action="flightlogin.html" data-ajax="false">
-            <select id="FlightInstance" data-native-menu="false" required="required" onchange="SelectFlight(this)">
-                <option>Select Flight</option>
-                <option value="-1">Manual Entry</option>
-                <optgroup label="Scheduled Flights" id="FlightsOpen"></optgroup>
-                <optgroup label="Closed Flights" id="FlightsClosed"></optgroup>
-            </select>
-            <fieldset>
-                <legend></legend>
-                <input type="number" id="FlightNum" placeholder="Flight #" required="required" />
-                <input type="text" id="Route" placeholder="Route" maxlength="7" required="required" />
-                <input type="date" id="FlightDate" placeholder="Date" data-role="date" required="required" />
-                <input type="text" id="TailNum" placeholder="Tail #" required="required" />
-                <input type="number" id="PAX" placeholder="PAX" required="required" />
-            </fieldset>
-            <input id="btnOpenFlight" type="submit" value="Open Flight" data-ajax="false" class="ui-btn" />
+        <form data-role="content" id="frmReceipts">
         </form>
 
         <div data-role="footer" data-position="fixed">
             <span>© Copyright 2014</span>
-        </div>
-
-        <!-- Reports -->
-        <div id="pnlReports" data-role="panel" data-display="overlay">
-            <h2 data-rel="close"><img src="./imgs/48x48/chart.gif" alt="" width="32" height="32" />Reports</h2>
-            <ul data-role="listview">
-                <li><a href="rptoutofstocksummary.html" data-rel="external" data-ajax="false">Out of Stock Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Change Due</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Sales Summary</a></li>
-                <li><a href="rptstocksummary.html" data-rel="external" data-ajax="false">Stock Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Payment</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Category Sales Summary</a></li>
-                <li><a href="#popupNotEnabled" data-rel="popup">Items Sold / PAX</a></li>
-            </ul>
         </div>
 
         <!-- Site Menu -->
@@ -127,10 +100,6 @@
             <p><img src="./imgs/clear.gif" class="IconInfo" alt="" width="32" height="32" /> Sorry, but this feature has not yet been enabled.</p>
         </div>
     </div>
-
-    <script id="FlightsTemplate" type="text/x-jquery-tmpl">
-        <option value="${FlightInstanceID}">Flight ${FlightNum} ${Origin}-${Dest}</option>
-    </script>
-    <script src="./js/flightopen.js"></script>
+    <script src="./js/sales/receipts.js"></script>
 </body>
 </html>
