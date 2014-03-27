@@ -159,37 +159,37 @@ var bl = (function () {
     };
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // NAME:    Sync()
+    // NAME:    Synchronize()
     // DEFINE:  Synchronize this device with the back office.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function Synchronize (startDate) {
         try {
             var endPoint = appSettings.EndPoint;
-            $.ajax({
-                type: 'POST',
-                crossDomain: true,
-                url: appSettings.EndPoint + '/Synchronize',
-                contentType: 'application/json; charset=utf-8',
-                data: '{UID:' + localStorage.UID + '}',
-                dataType: 'json',
-                success: function (results) {
-                    var nData = jQuery.parseJSON(results.d);
-                    onSynchronized(nData);
-                    console.log("Synchronize Successful.");
-                },
-                error: function (results) {
-                    console.log("Synchronize Failed.");
-                    ex.log(new Error(results.responseText), this.Name + ".synchronize()");
-                    onSynchronized({ Successful: false, SyncDate: new Date(), Message: "Error " + results.status + ": Communication Error." });
-                }
-            });
+            //$.ajax({
+            //    type: 'POST',
+            //    crossDomain: true,
+            //    url: appSettings.EndPoint + '/Synchronize',
+            //    contentType: 'application/json; charset=utf-8',
+            //    data: '{UID:' + localStorage.UID + '}',
+            //    dataType: 'json',
+            //    success: function (results) {
+            //        var nData = jQuery.parseJSON(results.d);
+            //        onSynchronized(nData);
+            //        console.log("Synchronize Successful.");
+            //    },
+            //    error: function (results) {
+            //        console.log("Synchronize Failed.");
+            //        ex.log(new Error(results.responseText), this.Name + ".synchronize()");
+            //        onSynchronized({ Successful: false, SyncDate: new Date(), Message: "Error " + results.status + ": Communication Error." });
+            //    }
+            //});
 
             // Update LastSyncDate
             localStorage.LastSyncDate = new Date();
             return true;
         }
         catch (err) {
-            ex.Log(err, this.Name + ".Sync(" + startDate + ")");
+            ex.Log(err, this.Name + ".Synchronize(" + startDate + ")");
             return false;
         }
     };
